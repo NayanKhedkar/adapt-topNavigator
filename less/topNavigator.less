@@ -1,0 +1,33 @@
+.top-navigator-container {
+    .top-navigator-inner {
+        text-align: right;
+        bottom: 0;
+        .top-navigator-item {
+            position: fixed;
+            bottom: 9%;
+            right: 3%;
+            display: inline-block;
+            z-index: 9999;
+            .dir-rtl & {
+                left: 3%;
+               right: 93%;
+            }
+            .top-navigator-arrow {
+                background-color: #2196f3;
+                padding: 10px;
+                cursor: pointer;
+                .arrow-icon {
+                    //&.fa .fa-arrow-up;
+                    font-size: 20px;
+                    aria-hidden: "true";
+                }
+                /* img {
+                    display: block;
+                    height: 25px;
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                }*/
+            }
+        }
+    }
+}
