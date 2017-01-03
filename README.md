@@ -1,7 +1,7 @@
 # adapt-topNavigator
 
 Adapt extension to scroll page to top.
-
+[demo.gif](https://github.com/NayanKhedkar/adapt-topNavigator/blob/master/topNavigator.gif) file.
 
 ## Installation
 This component can be installed using the  by running the following command:
