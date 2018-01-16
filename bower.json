@@ -2,7 +2,7 @@
     "name": "adapt-topNavigator",
     "repository": "https://github.com/NayanKhedkar/adapt-topNavigator.git",
     "version": "2.0.0",
-    "framework": "^2.0.0",
+    "framework": ">=2.2",
     "homepage": "https://github.com/NayanKhedkar/adapt-topNavigator.git",
     "displayName": "Top Navigator",
     "extension": "topNavigator",
