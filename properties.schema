@@ -13,15 +13,20 @@
         },
         "course": {
           "type": "object",
-          "required": true,
           "properties": {
             "_topNavigator": {
               "type": "object",
-              "required": true,
+              "required": false,
+              "legend": "Top Navigator",
               "properties": {
                 "_isEnabled": {
                   "type": "boolean",
-                  "required": true
+                  "required": true,
+                  "default": true,
+                  "title": "Is enabled",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the Top Navigator extension is enabled or disabled."
                 }
               }
             }
@@ -32,38 +37,55 @@
           "properties": {
             "_topNavigator": {
               "type": "object",
-              "required": true,
+              "required": false,
+              "legend": "Top Navigator",
               "properties": {
                 "_isEnabled": {
                   "type": "boolean",
-                  "required": true
+                  "required": true,
+                  "default": true,
+                  "title": "Is enabled",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the Top Navigator extension is enabled or disabled for this page."
                 },
                 "_graphic": {
-                  "type": "object",
-                  "required": false,
-                  "properties": {
+                  "type":"object",
+                  "required":true,
+                  "title": "Graphic",
+                  "properties":{
                     "src": {
-                      "type": "string",
-                      "required": false
+                      "type":"string",
+                      "required":true,
+                      "default": "",
+                      "inputType": "Asset:image",
+                      "validators": ["required"],
+                      "help": "The image for top navigator"
                     },
                     "alt": {
-                      "type": "string",
-                      "required": false
+                      "type":"string",
+                      "required":false,
+                      "default": "",
+                      "title": "Alternative Text",
+                      "inputType": "Text",
+                      "validators": [],
+                      "help": "The alternative text for this image",
+                      "translatable": true
                     }
                   }
                 }
               }
             }
-          },
-          "article": {
-            "type": "object"
-          },
-          "block": {
-            "type": "object"
-          },
-          "component": {
-            "type": "object"
           }
+        },
+        "article": {
+          "type": "object"
+        },
+        "block": {
+          "type": "object"
+        },
+        "component": {
+          "type": "object"
         }
       }
     }
