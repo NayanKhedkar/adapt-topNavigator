@@ -25,7 +25,7 @@ define(function(require) {
         },
         onScrollMove:function(event){
             var element=event.currentTarget;
-            if(element.scrollY>100){//give first componet height
+            if(element.scrollY>100){
             this.$('.top-navigator-arrow').removeClass('visibility-hidden');
             }
             if(element.scrollY===0){
@@ -36,7 +36,7 @@ define(function(require) {
               var data = this.model.toJSON();
               var template = Handlebars.templates["topNavigator"];
               var isTopNavigator=this.model.get('_topNavigator');
-                if (isTopNavigator&&isTopNavigator._isEnabled){
+                if (isTopNavigator && isTopNavigator._isEnabled){
                        this.$el.html(template(data));
                     }
                 return this;
