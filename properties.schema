@@ -48,31 +48,6 @@
                   "inputType": "Checkbox",
                   "validators": [],
                   "help": "Controls whether the Top Navigator extension is enabled or disabled for this page."
-                },
-                "_graphic": {
-                  "type":"object",
-                  "required":true,
-                  "title": "Graphic",
-                  "properties":{
-                    "src": {
-                      "type":"string",
-                      "required":true,
-                      "default": "",
-                      "inputType": "Asset:image",
-                      "validators": ["required"],
-                      "help": "The image for top navigator"
-                    },
-                    "alt": {
-                      "type":"string",
-                      "required":false,
-                      "default": "",
-                      "title": "Alternative Text",
-                      "inputType": "Text",
-                      "validators": [],
-                      "help": "The alternative text for this image",
-                      "translatable": true
-                    }
-                  }
                 }
               }
             }
