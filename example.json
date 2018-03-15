@@ -4,10 +4,6 @@
 }
 // To go on a contentObjects.json add following object for required page
 "_topNavigator": {
-        "_isEnabled": true,
-        "_graphic": {
-        	"src":"course/en/images/Global7000.jpg",
-        	"alt":"image not found"
-        }
+        "_isEnabled": true
     }
 //NOTE: topNavigator must be enabled in course.json
