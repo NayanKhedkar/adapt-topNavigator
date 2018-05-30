@@ -10,7 +10,7 @@ define(function(require) {
         initialize: function() {
             this.listenTo(Adapt, 'remove', this.remove);
             this.listenTo(Adapt, 'pageView:ready', this.onPageViewReady, this);
-            window.addEventListener("scroll", this.onScrollMove);
+            window.addEventListener("scroll", _.bind(this.onScrollMove,this));
         },
         events: {
             'click .top-navigator-arrow': 'scrollToPageToTop'
@@ -24,14 +24,17 @@ define(function(require) {
             // Adapt.scrollTo(0);
         },
         onScrollMove:function(event){
-            var element=event.currentTarget;
-            if(element.scrollY>100){
+            var scrollY = this.getScrollY();
+            if(scrollY>100){
             this.$('.top-navigator-arrow').removeClass('visibility-hidden');
             }
-            if(element.scrollY===0){
+            if(scrollY===0){
              this.$('.top-navigator-arrow').addClass('visibility-hidden');
             }
-         },
+        },
+        getScrollY:function(){
+           return window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        },
         render: function() {
               var data = this.model.toJSON();
               var template = Handlebars.templates["topNavigator"];
