@@ -1,9 +1,8 @@
-// To go on a course.json
-"_topNavigator": {
-        "_isEnabled": true
-}
 // To go on a contentObjects.json add following object for required page
 "_topNavigator": {
-        "_isEnabled": true
-    }
-//NOTE: topNavigator must be enabled in course.json
+        "_isEnabled": true,
+        "_graphic": {
+                "src": "assets/up-arrow.png",
+                "alt": "image not found"
+        }
+}

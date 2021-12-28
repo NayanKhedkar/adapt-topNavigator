@@ -1,51 +1,69 @@
-define(function(require) {
+import Adapt from 'core/js/adapt';
+import { templates } from 'core/js/reactHelpers';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-    var Adapt = require('coreJS/adapt');
-    var Backbone = require('backbone');
+class TopNavigatorView extends Backbone.View {
 
-    var TopNavigatorView = Backbone.View.extend({
+    className() {
+        return 'top-navigator__container';
+    }
 
-        className: 'top-navigator-container ',
+    initialize() {
+        this.listenTo(Adapt, 'remove', this.remove);
+        this.listenTo(Adapt, 'pageView:ready', this.onPageViewReady, this);
+        window.addEventListener("scroll", this.onScrollMove.bind(this));
+    }
 
-        initialize: function() {
-            this.listenTo(Adapt, 'remove', this.remove);
-            this.listenTo(Adapt, 'pageView:ready', this.onPageViewReady, this);
-            window.addEventListener("scroll", _.bind(this.onScrollMove,this));
-        },
-        events: {
-            'click .top-navigator-arrow': 'scrollToPageToTop'
-        },
-        onPageViewReady: function(){
-                this.render();
-        },
-        scrollToPageToTop: function(event) {
-            if(event && event.preventDefault) event.preventDefault();
-            $('body').velocity('scroll',{duration:1000,easing:'easeInBack'});
-            // Adapt.scrollTo(0);
-        },
-        onScrollMove:function(event){
-            var scrollY = this.getScrollY();
-            if(scrollY>100){
-            this.$('.top-navigator-arrow').removeClass('visibility-hidden');
-            }
-            if(scrollY===0){
-             this.$('.top-navigator-arrow').addClass('visibility-hidden');
-            }
-        },
-        getScrollY:function(){
-           return window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-        },
-        render: function() {
-              var data = this.model.toJSON();
-              var template = Handlebars.templates["topNavigator"];
-              var isTopNavigator=this.model.get('_topNavigator');
-                if (isTopNavigator && isTopNavigator._isEnabled){
-                       this.$el.html(template(data));
-                    }
-                return this;
-            }
-    });
+    events() {
+        return {
+            'click .js-top-navigator-arrow-click': 'scrollToPageToTop'
+        };
+    }
 
-    return TopNavigatorView;
+    onPageViewReady() {
+        this.render();
+    }
 
-});
+    get activeArrow() {
+        return 500;
+    }
+
+    get scrollAnimation() {
+        return {
+            duration: 1000,
+            easing: 'easeInBack'
+        }
+    }
+    
+    get scrollY() {
+        return window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+    }
+
+    scrollToPageToTop(event) {
+        event?.preventDefault();
+        this.$('.top-navigator__arrow').addClass('u-visibility-hidden');
+        $('body').velocity('scroll', this.scrollAnimation);
+    }
+
+    onScrollMove(event) {
+        if (this.scrollY > this.activeArrow) {
+            this.$('.top-navigator__arrow').removeClass('u-visibility-hidden');
+        }
+        if (this.scrollY === 0) {
+            this.$('.top-navigator__arrow').addClass('u-visibility-hidden');
+        }
+    }
+
+    render() {
+        const data = this.model.toJSON()._topNavigator;
+        const Template = templates[this.constructor.template.replace('.jsx', '')];
+        ReactDOM.render(<Template {...data} />, this.el);
+        return this;
+    }
+
+};
+
+TopNavigatorView.template = 'topNavigator.jsx';
+
+export default TopNavigatorView;

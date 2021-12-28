@@ -1,26 +1,31 @@
-.top-navigator-container {
-    .top-navigator-inner {
-        bottom: 0;
-        .top-navigator-item {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            display: inline-block;
-            z-index: 9999;
-            .dir-rtl & {
-                left: 10px;
-                right: initial;
-            }
-            .top-navigator-arrow {
-                background-color: #2196f3;
-                padding: 10px;
-                cursor: pointer;
-                .arrow-icon {
-                    //&.fa .fa-arrow-up;
-                    font-size: 20px;
-                    aria-hidden: "true";
-                }
-            }
+.top-navigator__inner {
+    position: absolute;
+    text-align: right;
+    bottom: 0;
+  
+    .top-navigator__item {
+      width: 65px;
+      height: 25px;
+      margin-top: 20px;
+      display: inline-block;
+      z-index: 9999;
+  
+      .top-navigator__arrow {
+        position: fixed;
+        bottom: 4%;
+        right: 3%;
+        background-color: #333;
+        color: #ffffff;
+        padding: 10px;
+        cursor: pointer;
+  
+        img {
+          display: block;
+          height: 25px;
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
         }
+      }
+  
     }
-}
+  }

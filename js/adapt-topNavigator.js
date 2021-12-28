@@ -1,17 +1,16 @@
-define(function(require) {
-    var Adapt = require('coreJS/adapt');
-    var Backbone = require('backbone');
-    var TopNavigatorView = require('extensions/adapt-topNavigator/js/topNavigatorView');
+import Adapt from 'core/js/adapt';
+import TopNavigatorView from './topNavigatorView';
 
-    function setupTopNavigatorView(page) {
-        page.$el.append(new TopNavigatorView({model: page.model}).$el);
+class TopNavigator extends Backbone.Controller {
+
+    initialize() {
+        Adapt.on('pageView:postRender', this.setupTopNavigatorView);
     }
-
-    Adapt.on('pageView:postRender', function(page) {
-        if (!Adapt.course.get('_topNavigator') || !Adapt.course.get('_topNavigator')._isEnabled) {
-            return;
+    
+    setupTopNavigatorView(page) {
+        if (page.model.get('_topNavigator')?._isEnabled) {
+            page.$el.append(new TopNavigatorView({ model: page.model }).$el);
         }
-        setupTopNavigatorView(page);
-    });
-
-});
+    }
+}
+export default new TopNavigator();
